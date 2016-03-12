@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection">
@@ -9,55 +9,57 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a class="brand-logo">Mardi 1 Janvier</a>
+            <a class="brand-logo" id="page-title">Appli Médecin</a>
             <ul class="right">
-                <li><a id="btn-open" class="tooltipped" onclick="openFolder();" data-position="bottom" data-tooltip="I am tooltip"><i class="mdi-action-input"></i></a></li>
-                <li><a id="btn-previous"><i class="mdi-av-skip-previous"></i></a></li>
-                <li><a id="btn-next"><i class="mdi-av-skip-next"></i></a></li>
+                <li><a id="btn-open" onclick="openFolder();" class="tooltipped" data-position="bottom" data-tooltip="Ouvrir un dossier"><i class="mdi-action-input"></i></a></li>
+                <li><a id="btn-previous" onclick="onPrevious(); "class="tooltipped" data-position="bottom" data-tooltip="Parcours précédent"><i class="mdi-av-skip-previous"></i></a></li>
+                <li><a id="btn-next" onclick="onNext();" class="tooltipped" data-position="bottom" data-tooltip="Parcours suivant"><i class="mdi-av-skip-next"></i></a></li>
             </ul>
         </div>
     </nav>
 
     <div class="container">
-        <table class="centered">
-            <thead>
-                <tr>
-                    <th>
-                        Poids
-                    </th>
-                    <th>
-                        Durée
-                    </th>
-                    <th>
-                        Niveau
-                    </th>
-                    <th>
-                        Calories
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        78kg
-                    </td>
-                    <td>
-                        5min
-                    </td>
-                    <td>
-                        3
-                    </td>
-                    <td>
-                        1234
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="infos">
+            <table class="centered">
+                <thead>
+                    <tr>
+                        <th>
+                            Poids
+                        </th>
+                        <th>
+                            Durée
+                        </th>
+                        <th>
+                            Niveau
+                        </th>
+                        <th>
+                            Calories
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            78kg
+                        </td>
+                        <td>
+                            5min
+                        </td>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            1234
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <hr>
 
         <div class="plot">
-            <img class="responsive-img" src="https://placehold.it/1000x500">
+            <p class="no-plot" id="no-file-loaded">Merci de charger les données.</p>
         </div>
     </div>
 
@@ -65,12 +67,13 @@
         <div class="footer-copyright">
             <div class="container">
                 App médecin par <a class="grey-text text-lighten-4" href="https://akwaryoum.fr/">Vincent Ploquien</a>
-            </div
+            </div>
         </div>
     </footer>
 
     <script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="assets/js/materialize.js"></script>
+    <script type="text/javascript" src="assets/js/hammer.min.js"></script>
+    <script type="text/javascript" src="assets/js/materialize.min.js"></script>
     <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>

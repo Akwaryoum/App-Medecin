@@ -1,14 +1,19 @@
 {
-    "name": "app-medecin",
-    "version": "0.0.1",
-    "description": "Appli pour mon projet final de SIN",
-    "main": "main.js",
-    "scripts": {
-        "start": "electron main.js"
-    },
-    "author": "Vincent P",
-    "license": "Private",
-    "devDependencies": {
-        "electron-prebuilt": "^0.36.0"
-    }
+  "name": "app-medecin",
+  "version": "0.0.1",
+  "description": "Appli pour mon projet final de SIN",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "Vincent P",
+  "license": "Private",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0"
+  },
+  "dependencies": {
+    "glob": "^7.0.3",
+    "jquery": "^2.2.1",
+    "slash": "^1.0.0"
+  }
 }

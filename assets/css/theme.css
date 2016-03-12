@@ -2,8 +2,13 @@
     margin: 15px 0;
 }
 
+.no-plot {
+	text-align: center;
+	font-size: 5em;
+}
+
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #ee6e73;
