@@ -132,19 +132,20 @@ function refreshPlot() {
 	var lineChart = new Chart(ctx).Line({
 		labels: ["init"],
 		datasets: [{
-			label: "Fréquence cardiaque",
-			fillColor: "rgba(220,0,0,0.2)",
-			strokeColor: "rgba(220,0,0,1)",
-			pointColor: "rgba(220,0,0,1)",
-			pointStrokeColor: "#fff",
-			pointHighlightFill: "#fff",
-			pointHighlightStroke: "rgba(220,220,220,1)",
-			data: [0]
-		}]
-	}, {
+				label: "Fréquence cardiaque",
+				fillColor: "rgba(220,0,0,0.2)",
+				strokeColor: "rgba(220,0,0,1)",
+				pointColor: "rgba(220,0,0,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(220,220,220,1)",
+				data: [0]
+			}]
+	},{
 		animation: false,
 		responsive: true,
-		bezierCurve: false
+		bezierCurve: false,
+		showTooltips: false
 	});
 	
 	lineChart.removeData();
@@ -154,6 +155,19 @@ function refreshPlot() {
 	});
 
 };
+
+$(document).keydown(function (event) {
+	switch (event.which) {
+		case 39:
+			// Right arrow
+			onNext();
+			break;
+		case 37:
+			onPrevious();
+			break;
+		default: break;
+	}
+});
 
 function Track(date, weight, level, calories, duration, cardiac) {
     this.date = date;

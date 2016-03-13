@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Appli pour mon projet final de SIN",
   "main": "main.js",
-  "scripts": {
-    "start": "electron main.js"
-  },
   "author": "Vincent P",
   "license": "Private",
   "devDependencies": {
@@ -16,5 +13,15 @@
     "glob": "^7.0.3",
     "jquery": "^2.2.1",
     "slash": "^1.0.0"
+  },
+  "scripts": {
+	"start": "electron main.js",
+  	"postinstall": "install-app-deps",
+	"pack": "build",
+	"dist": "build"
+  },
+  "build": {
+    "app-bundle-id": "app-medecin",
+    "app-catergory-type": "medecine"
   }
 }
