@@ -1,3 +1,7 @@
+.brand-logo {
+	text-transform:capitalize;
+}
+
 .plot {
     margin: 15px 0;
 }

@@ -5,6 +5,12 @@ const fs = require('fs');
 const glob = require('glob');
 const slash = require('slash');
 const path = require('path');
+const Chart = require('chart.js');
+
+/*
+Chart.defaults.global = {
+	animation: false
+};*/
 
 var isDataLoaded, trackList, currentTrack;
 
@@ -113,7 +119,7 @@ function refreshPlot() {
 	var track = trackList[currentTrack];
 	
 	// Set page title
-	$("#page-title").html(track.date.toLocaleString("fr-FR", { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" }));
+	$("#page-title").html(track.date.toLocaleString("fr", { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" }));
 
 	// Update table
 	$("#weight").html(track.weight);
@@ -122,6 +128,31 @@ function refreshPlot() {
 	$("#duration").html(track.duration);
 
 	// Update chart
+	var ctx = document.getElementById("line-chart").getContext("2d");
+	var lineChart = new Chart(ctx).Line({
+		labels: ["init"],
+		datasets: [{
+			label: "Fréquence cardiaque",
+			fillColor: "rgba(220,0,0,0.2)",
+			strokeColor: "rgba(220,0,0,1)",
+			pointColor: "rgba(220,0,0,1)",
+			pointStrokeColor: "#fff",
+			pointHighlightFill: "#fff",
+			pointHighlightStroke: "rgba(220,220,220,1)",
+			data: [0]
+		}]
+	}, {
+		animation: false,
+		responsive: true,
+		bezierCurve: false
+	});
+	
+	lineChart.removeData();
+
+	track.cardiac.forEach(function (item, index) {
+		lineChart.addData([item], index<6 ? index*10 + " s" : Math.floor((index * 10)/60) + " min " + (index * 10)%60);
+	});
+
 };
 
 function Track(date, weight, level, calories, duration, cardiac) {
