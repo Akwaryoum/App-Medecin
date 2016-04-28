@@ -4,7 +4,7 @@
   "description": "Appli pour mon projet final de SIN",
   "main": "main.js",
   "author": "Vincent Ploquien",
-  "license": "Private",
+  "private": true,
   "devDependencies": {
     "electron-prebuilt": "^0.37.0"
   },

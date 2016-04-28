@@ -1,10 +1,10 @@
 {
-  "license": "Private",
+  "private": true,
   "devDependencies": {
     "electron-prebuilt": "^0.36.0"
   },
   "scripts": {
-    "start": "electron app/main.js",
+    "start": "node_modules/electron-prebuilt/dist/electron.exe app/main.js",
     "postinstall": "install-app-deps",
     "pack": "build",
     "dist": "build"
