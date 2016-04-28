@@ -1,27 +1,17 @@
 {
-  "name": "app-medecin",
-  "version": "0.0.1",
-  "description": "Appli pour mon projet final de SIN",
-  "main": "main.js",
-  "author": "Vincent P",
   "license": "Private",
   "devDependencies": {
     "electron-prebuilt": "^0.36.0"
   },
-  "dependencies": {
-    "chart.js": "^1.0.2",
-    "glob": "^7.0.3",
-    "jquery": "^2.2.1",
-    "slash": "^1.0.0"
-  },
   "scripts": {
-	"start": "electron main.js",
-  	"postinstall": "install-app-deps",
-	"pack": "build",
-	"dist": "build"
+    "start": "electron app/main.js",
+    "postinstall": "install-app-deps",
+    "pack": "build",
+    "dist": "build"
   },
   "build": {
-    "app-bundle-id": "app-medecin",
-    "app-catergory-type": "medecine"
+    "win": {
+      "title": "Appli medecin"
+    }
   }
 }

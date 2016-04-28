@@ -1,0 +1,23 @@
+{
+  "name": "app_medecin",
+  "version": "1.0.0",
+  "description": "Appli pour mon projet final de SIN",
+  "main": "main.js",
+  "author": "Vincent Ploquien",
+  "license": "Private",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0"
+  },
+  "dependencies": {
+    "chart.js": "^1.0.2",
+    "glob": "^7.0.3",
+    "jquery": "^2.2.1",
+    "slash": "^1.0.0"
+  },
+  "build": {
+    "app-bundle-id": "app_medecin",
+    "app-catergory-type": "public.app-category.medical",
+	"iconUrl": "https://files.akwaryoum.fr/files/img/fa-medkit_256_0_f0342e_none.png.ico",
+	"productName": "Appli medecin"
+  }
+}

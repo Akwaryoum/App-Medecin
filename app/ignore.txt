@@ -1,0 +1,7 @@
+assets/js/hammer.min.js
+assets/js/jquery-2.1.1.min.js
+assets/js/materialize.js
+assets/js/materialize.min.js
+assets/css/materialize.css
+assets/css/materialize.min.css
+assets/LICENSE
