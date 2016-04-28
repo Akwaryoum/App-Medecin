@@ -1,6 +1,6 @@
 'use strict';
 
-var DEBUG = false;
+var DEBUG = true;
 
 const spawn = require('child_process').spawn;
 const path = require('path');
@@ -17,7 +17,7 @@ let mainWindow;
 
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 980, height: 700});
+    mainWindow = new BrowserWindow({width: 980, height: 720});
     mainWindow.setMenu(null);
 
     // and load the index.html of the app.
@@ -26,6 +26,8 @@ function createWindow() {
     // Open the DevTools.
     if (DEBUG)
     mainWindow.webContents.openDevTools();
+	
+	console.log("Hello world !");
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function() {

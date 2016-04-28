@@ -9,15 +9,9 @@
     "electron-prebuilt": "^0.37.0"
   },
   "dependencies": {
-    "chart.js": "^1.0.2",
+    "chart.js": "^2.0.2",
     "glob": "^7.0.3",
     "jquery": "^2.2.1",
     "slash": "^1.0.0"
-  },
-  "build": {
-    "app-bundle-id": "app_medecin",
-    "app-catergory-type": "public.app-category.medical",
-	"iconUrl": "https://files.akwaryoum.fr/files/img/fa-medkit_256_0_f0342e_none.png.ico",
-	"productName": "Appli medecin"
   }
 }

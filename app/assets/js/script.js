@@ -14,6 +14,8 @@ Chart.defaults.global = {
 
 var isDataLoaded, trackList, currentTrack;
 
+var linechart;
+
 function openFolder() {
 	isDataLoaded = false;
 	trackList = [];
@@ -25,7 +27,7 @@ function openFolder() {
         properties: [ 'openDirectory' ]
     }, function (fileNames) {
 		if (fileNames === undefined) {
-			dialog.showErrorBox("Erreur", "Impossible de charger les données: aucun fichiers sélectionnés.");
+			dialog.showErrorBox("Erreur", "Impossible de charger les donnÃ©es: aucun fichiers sÃ©lectionnÃ©s.");
 			return;
 		}
         var fileName = slash(fileNames[0]);
@@ -33,7 +35,7 @@ function openFolder() {
 		// Get a list of matching files
         glob("*/*-*/*h*.vwi", { cwd: fileName, nocase: true }, function (err, matches) {
 			if (matches.length == 0) {
-				dialog.showErrorBox("Erreur", "Impossible de charger les données: aucun fichier trouvé ou structure de fichiers invalide.");
+				dialog.showErrorBox("Erreur", "Impossible de charger les donnÃ©es: aucun fichier trouvÃ© ou structure de fichiers invalide.");
 				return;
 			}
 			
@@ -64,7 +66,7 @@ function openFolder() {
 							calories = parseInt(keyValue[1]);
 							break;
 						case "Duration":
-							duration = parseInt(keyValue[1]);
+							duration = parseFloat(keyValue[1]);
 							break;
 						case "Cardiac":
 							cardiac = keyValue[1].split(',').map(Number);
@@ -97,6 +99,7 @@ function onPrevious() {
     if (isDataLoaded) {
 		if (currentTrack > 0) {
 			currentTrack--;
+			linechart.destroy();
 			refreshPlot();
 		}
     }
@@ -107,53 +110,73 @@ function onNext() {
     if (isDataLoaded) {
 		if (currentTrack < trackList.length-1) {
 			currentTrack++;
+			linechart.destroy();
 			refreshPlot();
 		}
     }
 };
 
 function refreshPlot() {
-	console.log("Currently drawing new stuff.");
-	console.log("Currently displayed data is from :" + trackList[currentTrack].getString());
-	
 	var track = trackList[currentTrack];
+	var interval = (track.duration*60) / (track.cardiac.length-1);
+	var txt_duration = track.duration*60 >= 60 ? Math.floor(track.duration) + " min " + ((track.duration*60%60) <10 ? "" : (track.duration*60%60)) : track.duration*60 + " s";
 	
+	console.log("Currently drawing new stuff.");
+	console.log("Currently displayed data is from :" + track.getString());
+		
 	// Set page title
 	$("#page-title").html(track.date.toLocaleString("fr", { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" }));
 
 	// Update table
-	$("#weight").html(track.weight);
+	$("#weight").html(track.weight + " kg");
 	$("#level").html(track.level);
-	$("#calories").html(track.calories);
-	$("#duration").html(track.duration);
+	$("#calories").html(track.calories + " cal");
+	$("#duration").html(txt_duration);
 
 	// Update chart
-	var ctx = document.getElementById("line-chart").getContext("2d");
-	var lineChart = new Chart(ctx).Line({
-		labels: ["init"],
-		datasets: [{
-				label: "Fréquence cardiaque",
-				fillColor: "rgba(220,0,0,0.2)",
-				strokeColor: "rgba(220,0,0,1)",
-				pointColor: "rgba(220,0,0,1)",
-				pointStrokeColor: "#fff",
-				pointHighlightFill: "#fff",
-				pointHighlightStroke: "rgba(220,220,220,1)",
+	var ctx = document.getElementById("line-chart");
+	
+	Chart.defaults.global.responsive = true;
+	Chart.defaults.global.tooltips.enabled = false;
+	Chart.defaults.global.legend.display = false;
+	
+	linechart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: [""],
+			datasets: [{
+				label: "FrÃ©quence cardiaque",
+				backgroundColor: "rgba(220,0,0,0.2)",
+				borderColor: "rgba(220,0,0,1)",
+				pointBackgroundColor: "rgba(220,0,0,1)",
+				pointBorderColor: "#fff",
+				pointHoverBackgroundColor: "#fff",
+				pointHoverBorderColor: "rgba(220,220,220,1)",
+				lineTension: 0.1,
 				data: [0]
 			}]
-	},{
-		animation: false,
-		responsive: true,
-		bezierCurve: false,
-		showTooltips: false
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		}
+	});	
+	
+	linechart.data.datasets[0].data = [];
+	linechart.data.labels = [];
+	
+	track.cardiac.forEach(function (i, data) {
+		linechart.data.datasets[0].data.push(i);
+		linechart.data.labels.push(data<(60/interval) ? data*interval + " s" : Math.floor((data * interval)/60) + " min " + (data * interval)%60);
+		
 	});
 	
-	lineChart.removeData();
-
-	track.cardiac.forEach(function (item, index) {
-		lineChart.addData([item], index<6 ? index*10 + " s" : Math.floor((index * 10)/60) + " min " + (index * 10)%60);
-	});
-
+	linechart.update();
 };
 
 $(document).keydown(function (event) {
