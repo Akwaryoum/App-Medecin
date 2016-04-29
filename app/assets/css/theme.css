@@ -20,6 +20,12 @@
 	animation: none;
 }
 
+.translation {
+	position: absolute;
+    right: 32px;
+    top: 5px;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;

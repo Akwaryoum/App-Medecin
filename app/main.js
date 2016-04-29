@@ -26,8 +26,6 @@ function createWindow() {
     // Open the DevTools.
     if (DEBUG)
     	mainWindow.webContents.openDevTools();
-	
-	console.log("Hello world !");
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function() {

@@ -6,11 +6,13 @@ const glob = require('glob');
 const slash = require('slash');
 const path = require('path');
 const Chart = require('chart.js');
+const i18n = require('i18n');
 
-/*
-Chart.defaults.global = {
-	animation: false
-};*/
+i18n.configure({
+  defaultLocale: 'fr',
+  locales: ['fr', 'en'],
+  directory: __dirname + '/assets/locales'
+});
 
 var isDataLoaded, trackList, currentTrack;
 
@@ -22,12 +24,12 @@ function openFolder() {
 	currentTrack = 0;
 
     dialog.showOpenDialog({
-        title: 'Test title',
+        title: i18n.__('title.window.loading'),
         defaultPath: '/',
         properties: [ 'openDirectory' ]
     }, function (fileNames) {
 		if (fileNames === undefined) {
-			dialog.showErrorBox("Erreur", "Impossible de charger les données: aucun fichiers sélectionnés.");
+			dialog.showErrorBox(i18n.__('title.error'), i18n.__('error.loading.no_file'));
 			return;
 		}
         var fileName = slash(fileNames[0]);
@@ -35,7 +37,7 @@ function openFolder() {
 		// Get a list of matching files
         glob("*/*-*/*h*.vwi", { cwd: fileName, nocase: true }, function (err, matches) {
 			if (matches.length == 0) {
-				dialog.showErrorBox("Erreur", "Impossible de charger les données: aucun fichier trouvé ou structure de fichiers invalide.");
+				dialog.showErrorBox(i18n.__('title.error'), i18n.__('error.loading.not_valid'));
 				return;
 			}
 			
@@ -87,7 +89,7 @@ function openFolder() {
 					console.log(trackList.length + " items processed.");
 					isDataLoaded = true;
 					$("#no-file-loaded").css("display", "none");
-					refreshPlot();
+					refreshData(true);
 				}
 			});
 		});
@@ -100,7 +102,7 @@ function onPrevious() {
 		if (currentTrack > 0) {
 			currentTrack--;
 			linechart.destroy();
-			refreshPlot();
+			refreshData(true);
 		}
     }
 };
@@ -111,12 +113,36 @@ function onNext() {
 		if (currentTrack < trackList.length-1) {
 			currentTrack++;
 			linechart.destroy();
-			refreshPlot();
+			refreshData(true);
 		}
     }
 };
 
-function refreshPlot() {
+
+function loadLanguage() {
+	$("#t-table-weight").html(i18n.__('table.weight'));
+	$("#t-table-duration").html(i18n.__('table.duration'));
+	$("#t-table-level").html(i18n.__('table.level'));
+	$("#t-table-energy").html(i18n.__('table.energy'));
+	$("#t-footer-credit").html(i18n.__('footer.credit'));
+	$("#no-file-loaded").html(i18n.__('body.no-file'));
+	$("#page-title").html(i18n.__('app.title'));
+	$("title").html(i18n.__('app.title'));
+	
+	refreshData(false);
+}
+
+function onFR() {
+	i18n.setLocale("fr");
+	loadLanguage();
+}
+
+function onEN() {
+	i18n.setLocale("en");
+	loadLanguage();
+}
+
+function refreshData(refresh) {
 	var track = trackList[currentTrack];
 	var interval = (track.duration*60) / (track.cardiac.length-1);
 	var txt_duration = track.duration*60 >= 60 ? Math.floor(track.duration) + " min " + ((track.duration*60%60) <10 ? "" : (track.duration*60%60)) : track.duration*60 + " s";
@@ -125,14 +151,20 @@ function refreshPlot() {
 	console.log("Currently displayed data is from :" + track.getString());
 		
 	// Set page title
-	$("#page-title").html(track.date.toLocaleString("fr", { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" }));
+	$("#page-title").html(track.date.toLocaleString(i18n.getLocale(), { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" }));
 
 	// Update table
 	$("#weight").html(track.weight + " kg");
 	$("#level").html(track.level);
 	$("#calories").html(track.calories + " cal");
 	$("#duration").html(txt_duration);
+	
+	if (refresh) {
+		refreshPlot(track, interval);
+	}
+}
 
+function refreshPlot(track, interval) {
 	// Update chart
 	var ctx = document.getElementById("line-chart");
 	
@@ -145,7 +177,7 @@ function refreshPlot() {
 		data: {
 			labels: [""],
 			datasets: [{
-				label: "Fréquence cardiaque",
+				label: i18n.__('graph.label'),
 				backgroundColor: "rgba(220,0,0,0.2)",
 				borderColor: "rgba(220,0,0,1)",
 				pointBackgroundColor: "rgba(220,0,0,1)",

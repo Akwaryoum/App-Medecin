@@ -1,0 +1,14 @@
+{
+	"title.window.loading": "Select SD card folder",
+	"graph.label": "Cardiac frequency",
+	"title.error": "Error",
+	"error.loading.no_file": "Unable to load data: no files selected.",
+	"error.loading.not_valid": "Unable to load data: no valid files found.",
+	"table.weight": "Weight",
+	"table.duration": "Duration",
+	"table.level": "Level",
+	"table.energy": "Energy",
+	"footer.credit": "App made by ",
+	"body.no-file": "Please load files",
+	"app.title": "Medical application"
+}

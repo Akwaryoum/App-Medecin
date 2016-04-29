@@ -1,0 +1,14 @@
+{
+	"title.window.loading": "Sélectionner le dossier de la carte SD",
+	"graph.label": "Fréquence cardiaque",
+	"title.error": "Erreur",
+	"error.loading.no_file": "Impossible de charger les données: aucun fichiers sélectionnés.",
+	"error.loading.not_valid": "Impossible de charger les données: aucun fichier trouvé ou structure de fichiers invalide.",
+	"table.weight": "Poids",
+	"table.duration": "Durée",
+	"table.level": "Niveau",
+	"table.energy": "Energie",
+	"footer.credit": "Application par ",
+	"body.no-file": "Aucun fichier chargé",
+	"app.title": "Application médecin"
+}
