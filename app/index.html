@@ -1,7 +1,44 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection">
+	<style>
+		@font-face {
+			font-family: 'Material Icons';
+			font-style: normal;
+			font-weight: 400;
+			src: url(../app/assets/font/material-design-icons/Material-Design-Icons.eot); /* For IE6-8 */
+			src: local('Material Icons'),
+				local('MaterialIcons-Regular'),
+				url(../app/assets/font/material-design-icons/Material-Design-Icons.woff2) format('woff2'),
+				url(../app/assets/font/material-design-icons/Material-Design-Icons.woff) format('woff'),
+				url(../app/assets/font/material-design-icons/Material-Design-Icons.ttf) format('truetype');
+		}
+		.material-icons {
+			font-family: 'Material Icons';
+			font-weight: normal;
+			font-style: normal;
+			font-size: 24px;  /* Preferred icon size */
+			display: inline-block;
+			line-height: 1;
+			text-transform: none;
+			letter-spacing: normal;
+			word-wrap: normal;
+			white-space: nowrap;
+			direction: ltr;
+
+			/* Support for all WebKit browsers. */
+			-webkit-font-smoothing: antialiased;
+			/* Support for Safari and Chrome. */
+			text-rendering: optimizeLegibility;
+
+			/* Support for Firefox. */
+			-moz-osx-font-smoothing: grayscale;
+
+			/* Support for IE. */
+			font-feature-settings: 'liga';
+		}
+	</style>
+	<link type="text/css" rel="stylesheet" href="assets/css/materialize.css" media="screen,projection">
 	<link type="text/css" rel="stylesheet" href="assets/css/theme.css"/>
 	<meta charset="UTF-8">
 	<title>Appli médecin</title>
@@ -11,9 +48,9 @@
 		<div class="nav-wrapper">
 			<a class="brand-logo" id="page-title">Appli Médecin</a>
 			<ul class="right">
-				<li><a id="btn-open" onclick="openFolder();" class="tooltipped" data-position="bottom" data-tooltip="Ouvrir un dossier"><i class="mdi-action-input"></i></a></li>
-				<li><a id="btn-previous" onclick="onPrevious(); "class="tooltipped" data-position="bottom" data-tooltip="Parcours précédent"><i class="mdi-av-skip-previous"></i></a></li>
-				<li><a id="btn-next" onclick="onNext();" class="tooltipped" data-position="bottom" data-tooltip="Parcours suivant"><i class="mdi-av-skip-next"></i></a></li>
+				<li><a id="btn-open" onclick="openFolder();" class="tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Ouvrir un dossier"><i class="material-icons large">&#xe890;</i></a></li>
+				<li><a id="btn-previous" onclick="onPrevious(); "class="tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Parcours précédent"><i class="material-icons large">&#xe314;</i></a></li>
+				<li><a id="btn-next" onclick="onNext();" class="tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Parcours suivant"><i class="material-icons large">&#xe315;</i></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -58,10 +95,6 @@
 			</div>
 		</div>
 	</footer>
-	
-	<script>
-		const $ = require('jquery');
-	</script>
 
 	<script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/hammer.min.js"></script>

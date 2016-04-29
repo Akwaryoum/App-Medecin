@@ -18,6 +18,10 @@ var isDataLoaded, trackList, currentTrack;
 
 var linechart;
 
+$( document ).ready(function() {
+	loadLanguage();
+});
+
 function openFolder() {
 	isDataLoaded = false;
 	trackList = [];
@@ -126,10 +130,13 @@ function loadLanguage() {
 	$("#t-table-energy").html(i18n.__('table.energy'));
 	$("#t-footer-credit").html(i18n.__('footer.credit'));
 	$("#no-file-loaded").html(i18n.__('body.no-file'));
-	$("#page-title").html(i18n.__('app.title'));
 	$("title").html(i18n.__('app.title'));
 	
-	refreshData(false);
+	if (currentTrack == undefined) {
+		$("#page-title").html(i18n.__('app.title'));
+	} else {
+		refreshData(false);
+	}
 }
 
 function onFR() {
@@ -142,7 +149,7 @@ function onEN() {
 	loadLanguage();
 }
 
-function refreshData(refresh) {
+function refreshData(plot) {
 	var track = trackList[currentTrack];
 	var interval = (track.duration*60) / (track.cardiac.length-1);
 	var txt_duration = track.duration*60 >= 60 ? Math.floor(track.duration) + " min " + ((track.duration*60%60) <10 ? "" : (track.duration*60%60)) : track.duration*60 + " s";
@@ -159,7 +166,7 @@ function refreshData(refresh) {
 	$("#calories").html(track.calories + " cal");
 	$("#duration").html(txt_duration);
 	
-	if (refresh) {
+	if (plot) {
 		refreshPlot(track, interval);
 	}
 }

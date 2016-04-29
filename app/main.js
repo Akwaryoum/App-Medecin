@@ -1,6 +1,6 @@
 'use strict';
 
-var DEBUG = false;
+var DEBUG = true;
 
 const spawn = require('child_process').spawn;
 const path = require('path');
