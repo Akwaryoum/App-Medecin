@@ -13,5 +13,5 @@
 	"app.title": "Medical application",
 	"footer.about": "About",
 	"modal.title": "About & Licences",
-	"modal.content": "This application was created by Vincent Ploquien, TSTI2D1 during my final project. The code is hosted on Github at the address <a href='https://github.com/Akwaryoum/App-Medecin'>https://github.com/Akwaryoum/App-Medecin</a>. Underneath you can find the licences of every programs and libraries used by this application."
+	"modal.content": "This application was created by Vincent Ploquien, TSTI2D1 during my final project. The code is hosted on Github at the address <a href='https://github.com/Akwaryoum/App-Medecin' target='_blank'>https://github.com/Akwaryoum/App-Medecin</a>. Underneath you can find the licences of every programs and libraries used by this application."
 }

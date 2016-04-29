@@ -1,6 +1,6 @@
 {
   "name": "app_medecin",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Appli pour mon projet final de SIN",
   "main": "main.js",
   "author": "Vincent Ploquien",
