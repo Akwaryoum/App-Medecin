@@ -30,8 +30,6 @@ function openLicence() {
 	request('http://pebble.akwaryoum.fr/sin/LICENCES-SIN', function (error, response, body) {
 		if (!error || response.statusCode == 200) {
 			$('#licences').html(body);
-			console.debug(response);
-			console.log(body);
 		} else {
 			console.log(error);
 		}
