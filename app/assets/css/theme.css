@@ -1,3 +1,9 @@
+code {
+    background: #f0f0f0;
+    display: block;
+    padding: 6px;
+}
+
 .nav-wrapper {
 	margin: 0 32px;
 }

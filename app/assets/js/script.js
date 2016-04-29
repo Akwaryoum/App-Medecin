@@ -1,5 +1,6 @@
 'use strict';
 const remote = require('electron').remote;
+const app = remote.app;
 const dialog = remote.dialog;
 const fs = require('fs');
 const glob = require('glob');
@@ -7,6 +8,7 @@ const slash = require('slash');
 const path = require('path');
 const Chart = require('chart.js');
 const i18n = require('i18n');
+const request = require('request');
 
 i18n.configure({
   defaultLocale: 'fr',
@@ -19,39 +21,53 @@ var isDataLoaded, trackList, currentTrack;
 var linechart;
 
 $( document ).ready(function() {
+	openLicence();
+	$('.modal-trigger').leanModal();
 	loadLanguage();
 });
+
+function openLicence() {
+	request('http://pebble.akwaryoum.fr/sin/LICENCES-SIN', function (error, response, body) {
+		if (!error || response.statusCode == 200) {
+			$('#licences').html(body);
+			console.debug(response);
+			console.log(body);
+		} else {
+			console.log(error);
+		}
+	})
+}
 
 function openFolder() {
 	isDataLoaded = false;
 	trackList = [];
 	currentTrack = 0;
 
-    dialog.showOpenDialog({
-        title: i18n.__('title.window.loading'),
-        defaultPath: '/',
-        properties: [ 'openDirectory' ]
-    }, function (fileNames) {
+	dialog.showOpenDialog({
+		title: i18n.__('title.window.loading'),
+		defaultPath: '/',
+		properties: [ 'openDirectory' ]
+	}, function (fileNames) {
 		if (fileNames === undefined) {
 			dialog.showErrorBox(i18n.__('title.error'), i18n.__('error.loading.no_file'));
 			return;
 		}
-        var fileName = slash(fileNames[0]);
+		var fileName = slash(fileNames[0]);
 		
 		// Get a list of matching files
-        glob("*/*-*/*h*.vwi", { cwd: fileName, nocase: true }, function (err, matches) {
+		glob("*/*-*/*h*.vwi", { cwd: fileName, nocase: true }, function (err, matches) {
 			if (matches.length == 0) {
 				dialog.showErrorBox(i18n.__('title.error'), i18n.__('error.loading.not_valid'));
 				return;
 			}
 			
 			// Treat each file
-            matches.forEach(function (match) {
-                console.log("Treating: " + match);
-                var year = match.substring(0, 4);
-                var month = match.substring(5, 7);
-                var day = match.substring(8, 10);
-                var hour = match.substring(11, 13);
+			matches.forEach(function (match) {
+				console.log("Treating: " + match);
+				var year = match.substring(0, 4);
+				var month = match.substring(5, 7);
+				var day = match.substring(8, 10);
+				var hour = match.substring(11, 13);
 				var minutes = match.substring(14, 16);
 				var date = new Date(year, month, day, hour, minutes, 0, 0);
 				var weight, level, calories, duration, cardiac;
@@ -97,29 +113,29 @@ function openFolder() {
 				}
 			});
 		});
-    });
+	});
 };
 
 function onPrevious() {
 	console.log("Previous clicked");
-    if (isDataLoaded) {
+	if (isDataLoaded) {
 		if (currentTrack > 0) {
 			currentTrack--;
 			linechart.destroy();
 			refreshData(true);
 		}
-    }
+	}
 };
 
 function onNext() {
 	console.log("Next clicked");
-    if (isDataLoaded) {
+	if (isDataLoaded) {
 		if (currentTrack < trackList.length-1) {
 			currentTrack++;
 			linechart.destroy();
 			refreshData(true);
 		}
-    }
+	}
 };
 
 
@@ -130,6 +146,9 @@ function loadLanguage() {
 	$("#t-table-energy").html(i18n.__('table.energy'));
 	$("#t-footer-credit").html(i18n.__('footer.credit'));
 	$("#no-file-loaded").html(i18n.__('body.no-file'));
+	$("#t-footer-about").html(i18n.__('footer.about'));
+	$("#t-modal-title").html(i18n.__('modal.title'));
+	$("#t-modal-content").html(i18n.__('modal.content'));
 	$("title").html(i18n.__('app.title'));
 	
 	if (currentTrack == undefined) {
@@ -153,6 +172,8 @@ function refreshData(plot) {
 	var track = trackList[currentTrack];
 	var interval = (track.duration*60) / (track.cardiac.length-1);
 	var txt_duration = track.duration*60 >= 60 ? Math.floor(track.duration) + " min " + ((track.duration*60%60) <10 ? "" : (track.duration*60%60)) : track.duration*60 + " s";
+	
+	console.log("Interval : " + interval);
 	
 	console.log("Currently drawing new stuff.");
 	console.log("Currently displayed data is from :" + track.getString());
@@ -232,12 +253,12 @@ $(document).keydown(function (event) {
 });
 
 function Track(date, weight, level, calories, duration, cardiac) {
-    this.date = date;
-    this.weight = weight;
+	this.date = date;
+	this.weight = weight;
 	this.level = level;
 	this.calories = calories;
-    this.duration = duration;
-    this.cardiac = cardiac;
+	this.duration = duration;
+	this.cardiac = cardiac;
 };
 
 Track.prototype.getString = function () {

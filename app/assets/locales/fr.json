@@ -1,14 +1,17 @@
 {
-	"title.window.loading": "Sélectionner le dossier de la carte SD",
-	"graph.label": "Fréquence cardiaque",
-	"title.error": "Erreur",
-	"error.loading.no_file": "Impossible de charger les données: aucun fichiers sélectionnés.",
-	"error.loading.not_valid": "Impossible de charger les données: aucun fichier trouvé ou structure de fichiers invalide.",
-	"table.weight": "Poids",
 	"table.duration": "Durée",
 	"table.level": "Niveau",
 	"table.energy": "Energie",
-	"footer.credit": "Application par ",
-	"body.no-file": "Aucun fichier chargé",
-	"app.title": "Application médecin"
+	"table.weight": "Poids",
+	"footer.credit": "Appli par ",
+	"body.no-file": "Charger les fichiers",
+	"footer.about": "Crédits",
+	"modal.title": "Crédits & Licences",
+	"modal.content": "Cette application a été créée par Vincent Ploquien, TSTI2D1 dans le cadre de mon projet de fin d'année. Le code est accessible sur Github à l'adresse <a href='https://github.com/Akwaryoum/App-Medecin'>https://github.com/Akwaryoum/App-Medecin</a>. Vous pouvez trouver ci dessous les licences des logiciels et librairies utilisés par cette application.",
+	"app.title": "Application médecin",
+	"title.window.loading": "Choisissez le dossier de la carte SD",
+	"graph.label": "Fréquence cardiaque",
+	"title.error": "Erreur",
+	"error.loading.no_file": "Aucun fichiers séléctionnés.",
+	"error.loading.not_valid": "Aucun fichiers valides trouvés."
 }

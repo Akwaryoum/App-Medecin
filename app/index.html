@@ -48,9 +48,9 @@
 		<div class="nav-wrapper">
 			<a class="brand-logo" id="page-title">Appli Médecin</a>
 			<ul class="right">
-				<li><a id="btn-open" onclick="openFolder();" class="tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Ouvrir un dossier"><i class="material-icons large">&#xe890;</i></a></li>
-				<li><a id="btn-previous" onclick="onPrevious(); "class="tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Parcours précédent"><i class="material-icons large">&#xe314;</i></a></li>
-				<li><a id="btn-next" onclick="onNext();" class="tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Parcours suivant"><i class="material-icons large">&#xe315;</i></a></li>
+				<li><a id="btn-open" onclick="openFolder();" class="tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Ouvrir un dossier"><i class="material-icons large">&#xE63B;</i></a></li>
+				<li><a id="btn-previous" onclick="onPrevious(); "class="tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Parcours précédent"><i class="material-icons large">&#xE7C2;</i></a></li>
+				<li><a id="btn-next" onclick="onNext();" class="tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Parcours suivant"><i class="material-icons large">&#xE7C3;</i></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -81,13 +81,25 @@
 			<p class="no-plot" id="no-file-loaded">Merci de charger les données.</p>
 			<canvas id="line-chart"></canvas>
 		</div>
+		
+		<div id="about" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4 id="t-modal-title"></h4>
+				<p id="t-modal-content"></p>
+				<code id="licences"></code>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-action modal-close waves-effect btn-flat ">Ok</a>
+			</div>
+  		</div>
+
 	</div>
 
 	<footer>
 		<div class="footer-copyright">
 			<div class="container">
 				<div class="credit">
-					<span id="t-footer-credit"></span><a class="grey-text text-lighten-4" href="https://akwaryoum.fr/" target="_blank">Vincent Ploquien</a>
+					<span id="t-footer-credit"></span><a class="grey-text text-lighten-4" href="https://akwaryoum.fr/" target="_blank">Vincent Ploquien</a> - <a class="modal-trigger grey-text text-lighten-4" href="#about" id="t-footer-about"></a>
 				</div>
 				<div class="translation" id="translation">
 					<a class="grey-text text-lighten-4" href="#" onclick="onFR();">FR</a> | <a class="grey-text text-lighten-4" href="#" onclick="onEN();">EN</a>
