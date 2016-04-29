@@ -1,6 +1,6 @@
 'use strict';
 
-var DEBUG = true;
+var DEBUG = false;
 
 const spawn = require('child_process').spawn;
 const path = require('path');
@@ -25,7 +25,7 @@ function createWindow() {
 
     // Open the DevTools.
     if (DEBUG)
-    mainWindow.webContents.openDevTools();
+    	mainWindow.webContents.openDevTools();
 	
 	console.log("Hello world !");
 
