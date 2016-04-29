@@ -1,74 +1,71 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection">
-    <link type="text/css" rel="stylesheet" href="assets/css/theme.css"/>
-    <meta charset="UTF-8">
-    <title>Appli médecin</title>
+	<link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection">
+	<link type="text/css" rel="stylesheet" href="assets/css/theme.css"/>
+	<meta charset="UTF-8">
+	<title>Appli médecin</title>
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a class="brand-logo" id="page-title">Appli Médecin</a>
-            <ul class="right">
-                <li><a id="btn-open" onclick="openFolder();" class="tooltipped" data-position="bottom" data-tooltip="Ouvrir un dossier"><i class="mdi-action-input"></i></a></li>
-                <li><a id="btn-previous" onclick="onPrevious(); "class="tooltipped" data-position="bottom" data-tooltip="Parcours précédent"><i class="mdi-av-skip-previous"></i></a></li>
-                <li><a id="btn-next" onclick="onNext();" class="tooltipped" data-position="bottom" data-tooltip="Parcours suivant"><i class="mdi-av-skip-next"></i></a></li>
-            </ul>
-        </div>
-    </nav>
+	<nav>
+		<div class="nav-wrapper">
+			<a class="brand-logo" id="page-title">Appli Médecin</a>
+			<ul class="right">
+				<li><a id="btn-open" onclick="openFolder();" class="tooltipped" data-position="bottom" data-tooltip="Ouvrir un dossier"><i class="mdi-action-input"></i></a></li>
+				<li><a id="btn-previous" onclick="onPrevious(); "class="tooltipped" data-position="bottom" data-tooltip="Parcours précédent"><i class="mdi-av-skip-previous"></i></a></li>
+				<li><a id="btn-next" onclick="onNext();" class="tooltipped" data-position="bottom" data-tooltip="Parcours suivant"><i class="mdi-av-skip-next"></i></a></li>
+			</ul>
+		</div>
+	</nav>
 
-    <div class="container">
-        <div class="infos">
-            <table class="centered">
-                <thead>
-                    <tr>
-                        <th>
-                            Poids
-                        </th>
-                        <th>
-                            Durée
-                        </th>
-                        <th>
-                            Niveau
-                        </th>
-                        <th>
-                            Energie
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="weight"></td>
-                        <td id="duration"></td>
-                        <td id="level"></td>
-                        <td id="calories"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+	<div class="container">
+		<div class="infos">
+			<table class="centered">
+				<thead>
+					<tr>
+						<th id="t-table-weight"></th>
+						<th id="t-table-duration"></th>
+						<th id="t-table-level"></th>
+						<th id="t-table-energy"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td id="weight"></td>
+						<td id="duration"></td>
+						<td id="level"></td>
+						<td id="calories"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-        <div class="plot">
-            <p class="no-plot" id="no-file-loaded">Merci de charger les données.</p>
+		<div class="plot">
+			<p class="no-plot" id="no-file-loaded">Merci de charger les données.</p>
 			<canvas id="line-chart"></canvas>
-        </div>
-    </div>
+		</div>
+	</div>
 
-    <footer>
-        <div class="footer-copyright">
-            <div class="container">
-                App médecin par <a class="grey-text text-lighten-4" href="https://akwaryoum.fr/" target="_blank">Vincent Ploquien</a>
-            </div>
-        </div>
-    </footer>
+	<footer>
+		<div class="footer-copyright">
+			<div class="container">
+				<div class="credit">
+					<span id="t-footer-credit"></span><a class="grey-text text-lighten-4" href="https://akwaryoum.fr/" target="_blank">Vincent Ploquien</a>
+				</div>
+				<div class="translation" id="translation">
+					<a class="grey-text text-lighten-4" href="#" onclick="onFR();">FR</a> | <a class="grey-text text-lighten-4" href="#" onclick="onEN();">EN</a>
+				</div>
+			</div>
+		</div>
+	</footer>
 	
 	<script>
 		const $ = require('jquery');
 	</script>
 
-    <script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="assets/js/hammer.min.js"></script>
-    <script type="text/javascript" src="assets/js/materialize.min.js"></script>
-    <script type="text/javascript" src="assets/js/script.js"></script>
+	<script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="assets/js/hammer.min.js"></script>
+	<script type="text/javascript" src="assets/js/materialize.min.js"></script>
+	<script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>
