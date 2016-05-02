@@ -10,7 +10,6 @@ var Chart = require('chart.js');
 var i18n = require('i18n');
 var request = require('request');
 var pjson = require('./package.json');
-console.log(pjson.version);
 
 
 i18n.configure({
@@ -27,6 +26,7 @@ $( document ).ready(function() {
 	openLicence();
 	$('.modal-trigger').leanModal();
 	loadLanguage();
+	$('#version').html(pjson.version);
 });
 
 function openLicence() {
