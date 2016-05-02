@@ -1,14 +1,17 @@
 'use strict';
-const remote = require('electron').remote;
-const app = remote.app;
-const dialog = remote.dialog;
-const fs = require('fs');
-const glob = require('glob');
-const slash = require('slash');
-const path = require('path');
-const Chart = require('chart.js');
-const i18n = require('i18n');
-const request = require('request');
+var remote = require('electron').remote;
+var app = remote.app;
+var dialog = remote.dialog;
+var fs = require('fs');
+var glob = require('glob');
+var slash = require('slash');
+var path = require('path');
+var Chart = require('chart.js');
+var i18n = require('i18n');
+var request = require('request');
+var pjson = require('./package.json');
+console.log(pjson.version);
+
 
 i18n.configure({
   defaultLocale: 'fr',
