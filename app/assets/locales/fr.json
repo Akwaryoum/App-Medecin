@@ -13,5 +13,8 @@
 	"graph.label": "Fréquence cardiaque",
 	"title.error": "Erreur",
 	"error.loading.no_file": "Aucun fichiers séléctionnés.",
-	"error.loading.not_valid": "Aucun fichiers valides trouvés."
+	"error.loading.not_valid": "Aucun fichiers valides trouvés.",
+	"button.open": "Ouvrir un dossier",
+	"button.previous": "Parcours précédent",
+	"button.next": "Parcours suivant"
 }

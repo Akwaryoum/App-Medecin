@@ -151,6 +151,9 @@ function loadLanguage() {
 	$("#t-modal-title").html(i18n.__('modal.title'));
 	$("#t-modal-content").html(i18n.__('modal.content'));
 	$("title").html(i18n.__('app.title'));
+	$("#btn-open").attr("data-tooltip", i18n.__('button.open'));
+	$("#btn-previous").attr("data-tooltip", i18n.__('button.previous'));
+	$("#btn-next").attr("data-tooltip", i18n.__('button.next'));
 	
 	if (currentTrack == undefined) {
 		$("#page-title").html(i18n.__('app.title'));
